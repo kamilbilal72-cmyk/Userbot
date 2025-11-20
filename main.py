@@ -1,19 +1,28 @@
-import os
+import logging
 from pyrogram import Client, filters
 
-api_id = int(os.getenv("API_ID"))
-api_hash = os.getenv("API_HASH"))
-session = "UserBotSession"
+logging.basicConfig(level=logging.INFO)
 
-app = Client(session, api_id=api_id, api_hash=api_hash)
+api_id = 22811974
+api_hash = "13ae06fd677982c1c28a1a73924230cc"
 
-@app.on_message(filters.command("ping", prefixes=["/", "!", "."]))
-async def ping(_, message):
-    await message.reply("پینگ فعال است 🟢 UserBot")
+bot = Client(
+    "my_userbot",
+    api_id=api_id,
+    api_hash=api_hash
+)
 
-@app.on_message(filters.me & filters.text)
-async def self_echo(_, message):
-    if message.text == "تست":
-        await message.reply("یوزربات به‌درستی کار می‌کند ✔️")
+@bot.on_message(filters.command("start") & filters.me)
+async def start_handler(client, message):
+    await message.edit("🔥 UserBot با موفقیت فعال شد!")
 
-app.run()
+@bot.on_message(filters.command("ping") & filters.me)
+async def ping_handler(client, message):
+    await message.edit("🏓 Pong!")
+
+@bot.on_message(filters.command("help") & filters.me)
+async def help_handler(client, message):
+    await message.edit("📌 دستورات:\n/start\n/ping\n/help")
+
+print("UserBot Started ...")
+bot.run()
