@@ -6,4 +6,4 @@ class Config:
     # تنظیمات حرفه‌ای
     WELCOME_MESSAGE = "🔥 خوش آمدی {mention}!"
     ANTI_LINK = True
-    ADMIN_USERS = []  # ادمین‌ها را می‌توانید اضافه کنید با ID یا USERNAME
+    ADMIN_USERS =@bilal198988
